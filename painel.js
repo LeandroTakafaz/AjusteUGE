@@ -145,4 +145,4 @@ function blockCamp(){
     //     document.getElementById("briefing").style.display = "block"
     // }
 }
-window.addEventListener('load', blockCamp)
+window.addEventListener('load', blockCamp) 

@@ -34,4 +34,4 @@ function enableFieldsFromList(form, fields) {
 	for (var i = 0; i < fields.length; i++) {
 		form.setEnabled(fields[i], true);
 	}
-}
+} 

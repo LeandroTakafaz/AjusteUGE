@@ -20,7 +20,7 @@ function defineStructure() {
 }
 
 /**
- *
+ * 
  *
  * @param {number} lastSyncDate
  */

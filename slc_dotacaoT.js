@@ -44,7 +44,7 @@ function optAcaoT(linha) {
             }
         }
     }
-    //console.log(GetUni)
+    //console.log(GetUni) 
 
     var ArrayUni = GetUni.filter(function (el, i) {
         return GetUni.indexOf(el) === i;

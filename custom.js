@@ -11,7 +11,7 @@ function fnCustomDelete(elem) {
     fnWdkRemoveChild(elem);
     somarValores()
 }
-
+ 
 function k(i) {
     var v = i.value.replace(/\D/g,'');
     v = (v/100).toFixed(2) + '';

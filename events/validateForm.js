@@ -204,5 +204,5 @@ function validateForm(form){
     
     if (errors.length > 0) {
       throw errors.join("\n");
-    }
+    } 
 }
