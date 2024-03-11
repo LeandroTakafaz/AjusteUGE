@@ -1,0 +1,537 @@
+<html>
+
+<head>
+	<link type="text/css" rel="stylesheet" href="/style-guide/css/fluig-style-guide.min.css" />
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/mustache/mustache-min.js"></script>
+	<script type="text/javascript" src="/style-guide/js/fluig-style-guide.min.js" charset="utf-8"></script>
+	<script type="text/javascript" src="/webdesk/vcXMLRPC.js"></script>
+	<script type="text/javascript" src="dotacaoSimples.js"></script>
+	<script type="text/javascript" src="slc_dotacaoT.js"></script>
+	<meta charset="utf-8">
+</head>
+
+<body>
+	<div class="fluig-style-guide">
+		<form name="form" role="form">
+
+
+			<input type="hidden" name="hdn_numSuperior" id="hdn_numSuperior">
+			<input type="hidden" name="codProjeto" id="codProjeto">
+			<input type="hidden" name="codAcao" id="codAcao">
+			<input type="hidden" name="codRecurso" id="codRecurso">
+
+			<!-- Painel de Cabeçalho -->
+
+			<div class="row">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<div align="center" class="panel-title">
+							<h1><i class="fluigicon fluigicon-desktop icon-md" aria-hidden="true"></i> Solicitação
+								de Serviços - UGE</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Fim do Painel -->
+
+			<!-- Painel do Requisitante -->
+
+			<div class="panel panel-primary" id="painel_req">
+				<div class="panel-heading">
+					<h3 class="panel-title"><i class="flaticon flaticon-person icon-md"
+							aria-hidden="true"></i>Dados do Requisitante</h3>
+				</div>
+
+				<div class="panel-body">
+					<div class="form-group row">
+						<div class="col-md-2" id="NomeSolicita">
+							<label for="cmb_NomeSolicitante">Nome Solicitante</label>
+							<select name="cmb_NomeSolicitante" id="cmb_NomeSolicitante" dataset="colleague"
+							datasetkey="colleagueId" datasetvalue="colleagueName" class="form-control" readonly>
+						</select>
+						</div>
+
+						<div class="col-md-2" id="GerenteSolicita">
+							<label for="cmb_GerenteSolicitante">Gerente/Diretora</label>
+							<input type="text" class="form-control" name="cmb_GerenteSolicitante"
+							id="cmb_GerenteSolicitante" readonly>
+						</div>
+
+						<div class="col-md-2" id="DiretoriaSolicita">
+							<label for="hdn_diretoria">Diretoria</label>
+							<input type="text" class="form-control" name="hdn_diretoria" id="hdn_diretoria" readonly>
+						</div>
+
+					</div>
+
+					<div class="form-group row">
+						<div class="col-md-2">
+							<label for="DataHora">Data e Hora</label>
+							<input type="text" class="form-control" name="DataHora" id="DataHora" readonly>
+						</div>
+
+						<div class="col-md-2" id="numProcessoLabel">
+							<label for="numProcesso">Numero da Solicitação</label>
+							<input type="text" class="form-control" name="numProcesso" id="numProcesso" readonly>
+						</div>
+
+						<div class="col-md-3" id="UnidadeSolicita">
+							<label for="zm_UnidadeSolicitante">Unidade Solicitante</label>
+							<input type="text" class="form-control" name="cmb_UnidadeSolicitante"
+								id="cmb_UnidadeSolicitante" readonly>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+			<!-- Fim do Painel -->
+
+			<!-- Painel Tipo de Serviço -->
+
+			<div class="panel panel-primary" id="painel_tipoServico">
+				<div class="panel-heading">
+					<h3 class="panel-title"><i class="flaticon flaticon-system-tools icon-sm" aria-hidden="true"></i>
+						Tipo de Serviço</h3>
+				</div>
+
+				<div class="panel-body">
+					<div class="form-group row">
+						<div class="col-md-3" id="TipoSolicitacao">
+							<label for="TipoServico">Tipo de Solicitação</label>
+							<select class="form-control" name="TipoServico" id="TipoServico">
+								<option value="">Selecione uma Opção</option>
+								<option value="1">Ajuste Orçamentario</option>
+								<option value="2">Integração de Dados</option>
+							</select>
+						</div>
+
+						<div class="col-md-3" id="ObjetivoLabel">
+							<label for="Objetivo">Objetivo</label>
+							<select class="form-control  " name="Objetivo" id="Objetivo">
+								<option value="">Selecione uma Opção</option>
+								<option value="Acresc">Acrescentar Recurso</option>
+								<option value="Dimin">Diminuir Recurso</option>
+							</select>
+						</div>
+
+						<div class="col-md-3" id="MetricasLabel">
+							<label for="Metricas">Métricas</label>
+							<select class="form-control" name="Metricas" id="Metricas">
+								<option value="">Selecione uma Opção</option>
+								<option value="Pres">Orientação Técnica Presencial</option>
+								<option value="Dist">Orientação Técnica à Distância</option>
+								<option value="ConPres">Consultoria Presencial</option>
+								<option value="ConDist">Consultoria à Distância</option>
+								<option value="Evento">Evento</option>
+							</select>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+			<!-- Fim do Painel -->
+
+			<!-- Painel Ajuste Orçamentário-->
+
+			<div class="panel panel-primary" id="painel_ajuste">
+				<div class="panel-heading">
+					<h3 class="panel-title"><i class="flaticon flaticon-document-approved icon-sm"
+							aria-hidden="true"></i> Ajuste Orçamentario</h3>
+				</div>
+
+				<div class="form-group row">
+					<div class="panel-body col-md-8">
+						<div class="table-responsive">
+							<table class="table">
+								<tbody>
+
+									<div class="col-md-2">
+										<button type="button" class="waves-effect waves-light btn btn-info"
+											id="addRateioT" onclick="adiciona();">Inserir Dotação Orçamentária
+											<b>+</b></button>
+									</div>
+
+									<table id="asd" tablename="asd" class="table table-hover" noaddbutton="true"
+										nodeletebutton="true">
+										<thead>
+											<tr>
+												<td></td>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td width="10">
+
+													<span class="fluig-style-guide fs-display-block fs-md-space">
+														<i type="button"
+															class="fluigicon fluigicon-trash fluigicon-md delRateioT"
+															id="deleta_rateioT" name="deleta_rateioT"
+															onclick="Javascript:fnCustomDelete(this);"
+															style="cursor:pointer">
+														</i>
+													</span>
+												</td>
+
+												<td>
+													<div class="panel-body col-md-12">
+														<div class="form-group row">
+
+															<div class="col-md-2">
+																<label for="valorAjuste">Valor:</label>
+																<input id="valorAjuste" name="valorAjuste"
+																	class="form-control valorInova"
+																	onkeyup="k(this);" /><br />
+															</div>
+
+															<div class="col-md-4 Valor" id="Quant_pub">
+																<label for="Aumento">Aumento
+																	Público/Atendimento:</label>
+																<input type="number" class="form-control aumentoPub"
+																	placeholder="" name="Aumento" id="Aumento">
+															</div>
+
+															<div class="col-md-3" id="FonteDimi">
+																<label for="fonteRec">Origem do Recurso:</label>
+																<select class="form-control" name="fonteRec"
+																	id="fonteRec">
+																	<option value="">Selecione a Opção</option>
+																	<option value="Reserva">Fundo de Reserva</option>
+																	<option value="Convenio">REB/Convênio</option>
+																	<option value="CSO">Contribuição Social
+																		Ordinária - CSO</option>
+																	<option value="CSN">Contribuição Social
+																		Nacional - CSN</option>
+																</select>
+															</div>
+
+															<div class="col-md-3">
+																<label for="txt_saldo">Saldo:</label>
+																<div class="input-group">
+																	<input class="form-control mm" type="text"
+																		name="txt_saldo" id="txt_saldo" readonly>
+																	<span class="input-group-addon">$</span>
+																</div>
+															</div>
+
+														</div>
+
+														<div class="form-group row">
+															<div class="col-md-12">
+																<label for="Detalhes">Descrição e Justificativa
+																	do Ato:</label>
+																<textarea rows="5" name="Detalhes" id="Detalhes"
+																	class="form-control"></textarea>
+															</div>
+														</div>
+
+														<div class="form-group row">
+															<div class="col-md-3 Valor">
+																<label for="Inovacao">Valor Inovação:</label>
+																<input id="Inovacao" name="Inovacao"
+																	class="form-control valorInova"
+																	onkeyup="k(this);" /><br />
+															</div>
+
+															<div id="projetoT" class="col-md-9 projetoT">
+															</div>
+															<input type="hidden" name="txt_codprojetoT"
+																id="txt_codprojetoT">
+														</div>
+
+														<div class="form-group row">
+															<div class="col-md-3 Valor">
+																<label for="Receita">Valor Receita REB:</label>
+																<input id="Receita" name="Receita"
+																	class="form-control valorReceita"
+																	onkeyup="k(this);" /><br />
+															</div>
+
+															<div id="acaoT" class="col-md-9 acaoT"></div>
+															<input type="hidden" name="txt_codacaoT" id="txt_codacaoT">
+
+														</div>
+
+														<div class="form-group row">
+															<div class="col-md-3 Valor">
+																<label for="Convenio">Valor Convênio:</label>
+																<input id="Convenio" name="Convenio"
+																	class="form-control valorConvenio"
+																	onkeyup="k(this);" /><br />
+															</div>
+
+															<div id="unidadeT" class="col-md-9 unidadeT">
+															</div>
+															<input type="hidden" name="txt_codrecursoT"
+																id="txt_codrecursoT">
+
+														</div>
+													</div>
+
+												</td>
+											</tr>
+										</tbody>
+									</table>
+
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+					<div class="panel-body col-md-4">
+						<div class="card" id="card_dimi">
+							<div class="card-body">
+								<h3 class="card-title">
+									<script src="https://cdn.lordicon.com/ritcuqlt.js"></script>
+									<lord-icon src="https://cdn.lordicon.com/wdqztrtx.json" trigger="loop"
+										colors="primary:#722F37" style="width: 25px;height:25px;padding-top: 4px;">
+									</lord-icon>
+									Observação:
+								</h3>
+								<p class="card-text">Atenção ás instruções para preenchimento adequado dos campos da
+									tabela,
+									garantindo
+									que contenha as informações exatas.</p>
+								<ul>
+									<div id="ad">
+										<li><strong><u>Instruções:</u></strong></li>
+										<ol>
+											<li><strong>Preencher Dotação Orçamentária corretamente para evitar
+													cancelamento.</strong>
+											</li>
+											<li><strong>Determine o valor exato de acréscimo na solicitação e a Origem
+													do Recurso
+													correta.</strong></li>
+											<li><strong>Coloque adequadamente o aumento previsto em atendimento e
+													público para os
+													valores acréscentados.</strong></li>
+											<li><strong>Indique o Valor de Receita REB ou Convênio corretamente, caso
+													seja utilizado
+													de
+													somente um deles preencha o outro com um número 0.</strong></li>
+											<li><strong>Caso a Dotação Orçamentária possua mais de 1, deve ser sempre
+													preenchido o mesmo PROJETO e UNIDADE para eles,
+													podendo ser apenas trocado a AÇÃO entre os campos</strong></li>
+										</ol>
+									</div>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Fim do Painel -->
+
+			<!-- Painel da Dotação Orçamentária -->
+
+
+			<div class="panel panel-primary" id="painel_integra">
+				<div class="panel-heading">
+					<h3 class="panel-title"><i class="flaticon flaticon-create-new-folder icon-sm"
+							aria-hidden="true"></i> Integração de Dados</h3>
+				</div>
+
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="panel panel-primary">
+								<div class="panel-body">
+									<div>
+										<div class="form-group row">
+											<div>
+
+												<div class="form-group row">
+													<div class="col-md-4">
+														<label for="nomeColaborador">Colaborador Responsável:</label>
+														<input type="zoom" name="nomeColaborador" id="nomeColaborador"
+															data-zoom="{
+																				'displayKey':'colleagueName',
+																				'datasetId':'colleague',
+																				'maximumSelectionLength':'1',
+																				'placeholder':'Escolha o usuário',
+							
+																				'fields':[
+																					{
+																					  'field':'colleagueName',
+																					  'label':'Nome',
+																					  'standard':'true'
+																					}
+																				]
+																			 }" />
+													</div>
+
+													<div class="col-md-4" id="codLabel">
+														<label for="cod_evento">Código do Evento no SAS:</label>
+														<span class="required text-danger">
+															<strong>*</strong>
+														</span>
+														<input type="text" name="cod_evento" id="cod_evento"
+															class="form-control" mask="0000000000"
+															placeholder="Somente números">
+													</div>
+												</div>
+
+												<div style="display: none;">
+													<label class="control-label" for="txt_projeto">Projeto:</label>
+													<span class="required text-danger"><strong>*</strong></span>
+													<input type="zoom" class="form-control" id="txt_projeto"
+														name="txt_projeto" data-zoom="{
+													'displayKey':'NOME',
+													'datasetId':'dsprojeto',
+													'maximumSelectionLength':'1',
+													'placeholder':'Escolha o projeto',
+													'fields':[
+														{   'field':'CODCCUSTO', 
+															'label':'CODCCUSTO' 
+														},
+														{   'field':'NOME', 
+															'label':'NOME', 
+															'standard':'true' 
+														}
+													]
+												}">
+													<input type="hidden" name="txt_codprojeto" id="txt_codprojeto">
+												</div>
+												<div id="projetov" style="display: d;"></div>
+											</div>
+											<div>
+												<div style="display: none;">
+													<label class="control-label" for="txt_acao">Ação:</label>
+													<span class="required text-danger"><strong>*</strong></span>
+													<input type="zoom" class="form-control" id="txt_acao"
+														name="txt_acao" data-zoom="{
+														'displayKey':'NOME',
+														'datasetId':'dsacao',
+														'maximumSelectionLength':'1',
+														'placeholder':'Escolha a ação',
+														'fields':[
+															{   'field':'CODACAO', 'label':'CODACAO' },
+															{ 'field':'NOME', 'label':'NOME', 'standard':'true' }
+														]
+													}">
+													<input type="hidden" name="txt_codacao" id="txt_codacao">
+												</div>
+												<div id="acaov" style="display: d;"></div>
+											</div>
+											<div>
+												<div style="display: none;">
+													<label class="control-label" for="txt_recursos">Unidade:</label>
+													<span class="required text-danger"><strong>*</strong></span>
+													<input type="zoom" class="form-control" id="txt_recursos"
+														name="txt_recursos" data-zoom="{
+													'displayKey':'NOME',
+													'datasetId':'dsunidade',
+													'maximumSelectionLength':'1',
+													'placeholder':'Escolha o recurso',
+													'fields':[ 
+														{ 'field':'CODUNIDADE', 'label':'CODUNIDADE' },
+														{ 'field':'NOME', 'label':'NOME', 'standard':'true' }
+													]
+												}">
+												</div>
+												<div id="unidadev" style="display: d;"></div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="card" id="card_dimi">
+							<div class="card-body">
+								<h3 class="card-title">
+									<script src="https://cdn.lordicon.com/ritcuqlt.js"></script>
+									<lord-icon src="https://cdn.lordicon.com/wdqztrtx.json" trigger="loop"
+										colors="primary:#722F37" style="width: 25px;height:25px;padding-top: 4px;">
+									</lord-icon>
+									Observação:
+								</h3>
+								<p class="card-text">Atenção ás instruções para preenchimento adequado dos campos da
+									tabela,
+									garantindo
+									que contenha as informações exatas.</p>
+								<ul>
+									<div id="ad">
+										<li><strong><u>Instruções:</u></strong></li>
+										<ol>
+											<li><strong>Preencher Dotação Orçamentária corretamente para evitar
+													cancelamento.</strong>
+											</li>
+											<li><strong>É obrigatório o ANEXO com os Arquivos da métrica dos dados que
+													serão inseridos.</strong></li>
+											<li><strong>Atenção na escolha da métrica para preencher os campos
+													correspondentes á cada solicitação.</strong></li>
+										</ol>
+									</div>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Painel Parecer UGE-->
+
+			<div class="panel panel-primary" id="painel_parecer">
+				<div class="panel-heading">
+					<h3 class="panel-title"><i class="flaticon flaticon-content-paste icon-sm" aria-hidden="true"></i>
+						Parecer da UGE</h3>
+				</div>
+
+				<div class="panel-body">
+
+					<div class="form-group row">
+						<div class="col-md-6">
+							<label for="justificativa">Justificativa</label>
+							<textarea rows="5" name="justificativa_gerencia" id="justificativa_gerencia"
+								class="form-control"></textarea>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<!-- Fim do Painel -->
+
+			<!-- Painel de Migração -->
+
+			<div class="panel panel-primary" id="painel_registro">
+				<div class="panel-heading">
+					<h3 class="panel-title"><i class="flaticon flaticon-content-paste icon-sm" aria-hidden="true"></i>
+						Resultado da Migração</h3>
+				</div>
+
+				<div class="panel-body">
+
+					<div class="form-group row">
+						<div class="col-md-6">
+							<label for="conclusao">Conclusão da Integração de Dados</label>
+							<textarea rows="5" name="conclusao" id="conclusao" class="form-control"></textarea>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<!-- Fim do Painel -->
+
+			<div class="form-group">
+				<div class="col-md-10" style="text-align:left;background-color: #58595B;">
+					<img src="atic-branco.png" title="Logo do ATIC REAL OFFICIAL" width="80" height="37">
+				</div>
+				<div class="col-md-2" style="text-align:right;background-color:#58595B">
+					<img src="sebrae-branco.png" title="Logo do SEBRAE" width="80" height="37">
+				</div>
+			</div>
+
+	</form>
+	</div>
+</body>
+
+<script src="custom.js"></script>
+
+</html>
