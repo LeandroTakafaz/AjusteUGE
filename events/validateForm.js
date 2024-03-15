@@ -27,19 +27,19 @@ function validateForm(form){
         if(form.getValue("valorAjuste___5") == ""){
             errors.push("Campo Valor não foi preenchido.");
         }
-        if(form.getValue("Aumento___1") == ""){
+        if(form.getValue("Objetivo") == "Acresc" && form.getValue("Aumento___1") == ""){
             errors.push("Campo Aumento Público/Atendimento não foi preenchido.");
         }
-        if(form.getValue("Aumento___2") == ""){
+        if(form.getValue("Objetivo") == "Acresc" && form.getValue("Aumento___2") == ""){
             errors.push("Campo Aumento Público/Atendimento não foi preenchido.");
         }
-        if(form.getValue("Aumento___3") == ""){
+        if(form.getValue("Objetivo") == "Acresc" && form.getValue("Aumento___3") == ""){
             errors.push("Campo Aumento Público/Atendimento não foi preenchido.");
         }
-        if(form.getValue("Aumento___4") == ""){
+        if(form.getValue("Objetivo") == "Acresc" && form.getValue("Aumento___4") == ""){
             errors.push("Campo Aumento Público/Atendimento não foi preenchido.");
         }
-        if(form.getValue("Aumento___5") == ""){
+        if(form.getValue("Objetivo") == "Acresc" && form.getValue("Aumento___5") == ""){
             errors.push("Campo Aumento Público/Atendimento não foi preenchido.");
         }
         if(form.getValue("fonteRec___1") == ""){
@@ -72,92 +72,50 @@ function validateForm(form){
         if(form.getValue("Detalhes___5") == ""){
             errors.push("Campo Descrição e Justificativa do Ato não foi preenchido.");
         }
-        if(form.getValue("Inovacao___1") == ""){
+        if(form.getValue("Objetivo") == "Acresc" && form.getValue("Inovacao___1") == ""){
             errors.push("Campo Valor Inovação não foi preenchido.");
         }
-        if(form.getValue("Inovacao___2") == ""){
+        if(form.getValue("Objetivo") == "Acresc" && form.getValue("Inovacao___2") == ""){
             errors.push("Campo Valor Inovação não foi preenchido.");
         }
-        if(form.getValue("Inovacao___3") == ""){
+        if(form.getValue("Objetivo") == "Acresc" && form.getValue("Inovacao___3") == ""){
             errors.push("Campo Valor Inovação não foi preenchido.");
         }
-        if(form.getValue("Inovacao___4") == ""){
+        if(form.getValue("Objetivo") == "Acresc" && form.getValue("Inovacao___4") == ""){
             errors.push("Campo Valor Inovação não foi preenchido.");
         }
-        if(form.getValue("Inovacao___5") == ""){
+        if(form.getValue("Objetivo") == "Acresc" && form.getValue("Inovacao___5") == ""){
             errors.push("Campo Valor Inovação não foi preenchido.");
         }
-        if(form.getValue("Receita___1") == ""){
+        if(form.getValue("Objetivo") == "Acresc" && form.getValue("Receita___1") == ""){
             errors.push("Campo Valor Receita REB não foi preenchido.");
         }
-        if(form.getValue("Receita___2") == ""){
+        if(form.getValue("Objetivo") == "Acresc" && form.getValue("Receita___2") == ""){
             errors.push("Campo Valor Receita REB não foi preenchido.");
         }
-        if(form.getValue("Receita___3") == ""){
+        if(form.getValue("Objetivo") == "Acresc" && form.getValue("Receita___3") == ""){
             errors.push("Campo Valor Receita REB não foi preenchido.");
         }
-        if(form.getValue("Receita___4") == ""){
+        if(form.getValue("Objetivo") == "Acresc" && form.getValue("Receita___4") == ""){
             errors.push("Campo Valor Receita REB não foi preenchido.");
         }
-        if(form.getValue("Receita___5") == ""){
+        if(form.getValue("Objetivo") == "Acresc" && form.getValue("Receita___5") == ""){
             errors.push("Campo Valor Receita REB não foi preenchido.");
         }
-        if(form.getValue("Convenio___1") == ""){
+        if(form.getValue("Objetivo") == "Acresc" && form.getValue("Convenio___1") == ""){
             errors.push("Campo Valor Convênio não foi preenchido.");
         }
-        if(form.getValue("Convenio___2") == ""){
+        if(form.getValue("Objetivo") == "Acresc" && form.getValue("Convenio___2") == ""){
             errors.push("Campo Valor Convênio não foi preenchido.");
         }
-        if(form.getValue("Convenio___3") == ""){
+        if(form.getValue("Objetivo") == "Acresc" && form.getValue("Convenio___3") == ""){
             errors.push("Campo Valor Convênio não foi preenchido.");
         }
-        if(form.getValue("Convenio___4") == ""){
+        if(form.getValue("Objetivo") == "Acresc" && form.getValue("Convenio___4") == ""){
             errors.push("Campo Valor Convênio não foi preenchido.");
         }
-        if(form.getValue("Convenio___5") == ""){
+        if(form.getValue("Objetivo") == "Acresc" && form.getValue("Convenio___5") == ""){
             errors.push("Campo Valor Convênio não foi preenchido.");
-        }
-        if(form.getValue("txt_codprojetoT___1") == ""){
-            errors.push("Campo Projeto não foi preenchido.");
-        }
-        if(form.getValue("txt_codprojetoT___2") == ""){
-            errors.push("Campo Projeto não foi preenchido.");
-        }
-        if(form.getValue("txt_codprojetoT___3") == ""){
-            errors.push("Campo Projeto não foi preenchido.");
-        }
-        if(form.getValue("txt_codprojetoT___4") == ""){
-            errors.push("Campo Projeto não foi preenchido.");
-        }
-        if(form.getValue("txt_codprojetoT___5") == ""){
-            errors.push("Campo Projeto não foi preenchido.");
-        }
-        if(form.getValue("txt_codacaoT___1") == ""){
-            errors.push("Campo Ação não foi preenchido.");
-        }
-        if(form.getValue("txt_codacaoT___2") == ""){
-            errors.push("Campo Ação não foi preenchido.");
-        }
-        if(form.getValue("txt_codacaoT___3") == ""){
-            errors.push("Campo Ação não foi preenchido.");
-        }
-        if(form.getValue("txt_codacaoT___4") == ""){
-            errors.push("Campo Ação não foi preenchido.");
-        }
-        if(form.getValue("txt_codacaoT___5") == ""){
-            errors.push("Campo Ação não foi preenchido.");
-        }
-        if(form.getValue("txt_codrecursoT___1") == ""){
-            errors.push("Campo Unidade não foi preenchido.");
-        }
-        if(form.getValue("txt_codrecursoT___2") == ""){
-            errors.push("Campo Unidade não foi preenchido.");
-        }
-        if(form.getValue("txt_codrecursoT___3") == ""){
-            errors.push("Campo Unidade não foi preenchido.");
-        }
-        if(form.getValue("txt_codrecursoT___4") == ""){
-            errors.push("Campo Unidade não foi preenchido.");
         }
         
 

@@ -4,7 +4,7 @@ function codProjetoT() {
 }
 
 function codAcaoUnidadeT() {
-    var dataset = DatasetFactory.getDataset("dsc_TT", null, null, null);
+    var dataset = DatasetFactory.getDataset("dsc_CentroCusto", null, null, null);
     return dataset.values
 }
 
@@ -44,7 +44,7 @@ function optAcaoT(linha) {
             }
         }
     }
-    //console.log(GetUni) 
+    //console.log(GetUni)
 
     var ArrayUni = GetUni.filter(function (el, i) {
         return GetUni.indexOf(el) === i;
@@ -195,7 +195,7 @@ function slcProjetoT(linha) {
         att = document.createAttribute('readonly')
         vselect.setAttributeNode(att)
     }
-    else if (Now == 15 || Now == 7 || Now == 6 || Now == 13 || Now == 8){
+    else if (Now == 5 || Now == 8 || Now == 32 || Now == 43 || Now == 63){
         att = document.createAttribute('readonly')
         vselect.setAttributeNode(att)
     }
@@ -314,7 +314,7 @@ function slcProjetoT(linha) {
         att = document.createAttribute('readonly')
         vselect.setAttributeNode(att)
     }
-    else if (Now == 15 || Now == 7 || Now == 6 || Now == 13 || Now == 8){
+    else if (Now == 5 || Now == 8 || Now == 32 || Now == 43 || Now == 63){
         att = document.createAttribute('readonly')
         vselect.setAttributeNode(att)
     }
@@ -419,7 +419,7 @@ function slcUnidadeT(linha) {
         att = document.createAttribute('readonly')
         vselect.setAttributeNode(att)
     }
-    else if (Now == 15 || Now == 7 || Now == 6 || Now == 13 || Now == 8){
+    else if (Now == 5 || Now == 8 || Now == 32 || Now == 43 || Now == 63){
         att = document.createAttribute('readonly')
         vselect.setAttributeNode(att)
     }

@@ -4,7 +4,7 @@ function codProjeto(){
 }
 
 function codAcaoUnidade(){
-    var dataset = DatasetFactory.getDataset("dsc_TT", null, null, null);
+    var dataset = DatasetFactory.getDataset("dsc_CentroCusto", null, null, null);
     return dataset.values
 }
  

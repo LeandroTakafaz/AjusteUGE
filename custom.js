@@ -11,7 +11,7 @@ function fnCustomDelete(elem) {
     fnWdkRemoveChild(elem);
     somarValores()
 }
- 
+
 function k(i) {
     var v = i.value.replace(/\D/g,'');
     v = (v/100).toFixed(2) + '';
@@ -85,12 +85,12 @@ function unidade() {
                     document.getElementById("cmb_GerenteSolicitante").value = ds_und.values[j]['NomeGerente']
                     // console.log(document.getElementById("cmb_GerenteSolicitante").value)
                     document.getElementById("cmb_UnidadeSolicitante").value = ds_und.values[j]['NomeUnidade']
-                    document.getElementById("hdn_numSuperior").value = ds_und.values[j]['Matricula']
+                     document.getElementById("hdn_numSuperior").value = ds_und.values[j]['Matricula']
                 
-                    if (mat == document.getElementById("hdn_numSuperior").value) {
+                  /*  if (mat == document.getElementById("numSuperior").value) {
                         document.getElementById("cmb_GerenteSolicitante").value = ds_und.values[j]['NomeSuperior']
-                        //document.getElementById("hdn_numSuperior").value = ds_und.values[j]['MatSuperior']
-                    }  
+                        document.getElementById("numSuperior").value = ds_und.values[j]['MatSuperior']
+                    }  */
 
                     dir = ds_und.values[j]["MatSuperior"]
                     console.log("diretoria: " + dir)
