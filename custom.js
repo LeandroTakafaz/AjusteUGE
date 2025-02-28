@@ -66,42 +66,39 @@ function buscaSaldo(projeto, acao, indx) {
     }
 }
 
-function unidade() {
-    var ds_mat = DatasetFactory.getDataset("colleague", null, null, null);
-    var ds_und = DatasetFactory.getDataset("dsc_Unidades", null, null, null);
+let siglaDiretoria  = document.getElementById('hdn_dir_vinc').value.split(':')[2]
 
+function datasetUnidade(){  dsc_Unidades = DatasetFactory.getDataset("dsc_Unidades",null,null,null); }
+window.addEventListener("load", datasetUnidade);
+function unidade(){
+    var ds_mat = DatasetFactory.getDataset("colleague",null,null,null);
+    var ds_und = dsc_Unidades
+    var matDir = 0
     var mat = document.getElementById("cmb_NomeSolicitante").value;
-    // console.log(mat)
 
-    for (var i = 0; i < ds_mat.values.length; i++) {
-        if (mat == ds_mat.values[i]['colleaguePK.colleagueId']) {
+    for(var i=0;i<ds_mat.values.length;i++){
+        if(mat == ds_mat.values[i]['colleaguePK.colleagueId']){
             var und = ds_mat.values[i]['groupId'];
-
-            // console.log(ds_mat.values[i]['groupId'])
-
-            for (var j = 0; j < ds_und.values.length; j++) {
-                if (und == ds_und.values[j]['AntigaSigla']) {
-                    // console.log(ds_und.values[j]['Sigla'])
+            for(var j=0;j<ds_und.values.length;j++){
+                if(und == ds_und.values[j]['AntigaSigla']){
                     document.getElementById("cmb_GerenteSolicitante").value = ds_und.values[j]['NomeGerente']
-                    // console.log(document.getElementById("cmb_GerenteSolicitante").value)
-                    document.getElementById("cmb_UnidadeSolicitante").value = ds_und.values[j]['NomeUnidade']
-                     document.getElementById("hdn_numSuperior").value = ds_und.values[j]['Matricula']
-                
-                  /*  if (mat == document.getElementById("numSuperior").value) {
-                        document.getElementById("cmb_GerenteSolicitante").value = ds_und.values[j]['NomeSuperior']
-                        document.getElementById("numSuperior").value = ds_und.values[j]['MatSuperior']
-                    }  */
-
-                    dir = ds_und.values[j]["MatSuperior"]
-                    console.log("diretoria: " + dir)
-                    if (dir == "00000428") {
-                        document.getElementById("hdn_diretoria").value = 'DISUP'
-                    } else if (dir == "80000318") {
-                        document.getElementById("hdn_diretoria").value = 'DIRAF'
-                    } else if (dir == "00000656") { document.getElementById("hdn_diretoria").value = 'DITEC' }
-
+                    document.getElementById("zm_UnidadeSolicitante").value = ds_und.values[j]['NomeUnidade']
+                    if(und != 'DITEC' && und != 'DIRAF' && und != 'DISUP'){
+                        document.getElementById("hdn_numSuperior").value = ds_und.values[j]['Matricula'];
+                    }else{
+                        document.getElementById("hdn_numSuperior").value = mat;
+                    }
+                    document.getElementById("MatDiretoria").value = ds_und.values[j]['NomeSuperior']
+                    matDir = ds_und.values[j]['MatSuperior']
                 }
             }
+        }
+    }
+    for(j = 0; j < ds_und.values.length; j++){
+        //console.log(matDir)
+        if(ds_und.values[j]['Matricula'] == matDir){
+            document.getElementById("MatDiretoria_Unid").value = ds_und.values[j]['NomeUnidade'];
+            document.getElementById("hdn_dir_vinc").value = 'Pool:Role:'+ds_und.values[j]['Sigla']+'';
         }
     }
 }
@@ -317,21 +314,65 @@ function copiarValores() {
           pro[i].getElementsByTagName("input")[0].value = projetoValue;
         }
       }
-
-/*    var uni = document.getElementsByClassName("unidadeT");
-    var tamanhoUni = uni.length;
-    var unidadeValue = document.getElementsByClassName("unidadeT")[1].getElementsByTagName("input")[0].value;
-    var unidadeIndex = document.getElementsByClassName("unidadeT")[1].getElementsByTagName("input")[0].id.split("_")[2];
-
-    if (tamanhoUni > 2) {
-        for (var i = 2; i < tamanhoUni; i++) {
-            
-            var index2 = uni[i].getElementsByTagName("input")[0].id.split("_")[2];
-            document.getElementById("txt_codrecursoT___" + index2).value = document.getElementById("txt_codrecursoT___" + unidadeIndex).value 
-        }
-
-        for (var i = 2; i < tamanhoUni; i++) {
-            uni[i].getElementsByTagName("input")[0].value = unidadeValue;
-        }
-    }*/
 }
+
+
+var Reunioes = (DatasetFactory.getDataset("Cadastro de Reunião DIREX", null, null, null)).values;
+
+function dataAtual() {
+    var today = new Date();
+    var year = today.getFullYear();
+    var month = ("0" + (today.getMonth() + 1)).slice(-2);
+    var day = ("0" + today.getDate()).slice(-2);
+    return parseInt(year + month + day);
+}
+
+function converterData(dateString) {
+    if (!dateString) return 0;
+    return parseInt(dateString.replace(/-/g, ""));
+}
+
+function formatarData(dateString) {
+    if (!dateString) return "";
+    var partes = dateString.split("-");
+    return partes[2] + "-" + partes[1] + "-" + partes[0];
+}
+
+function listarDatasFuturas() {
+    var tamanho = Reunioes.length;
+    var dataReuniao = dataAtual();
+    var selectReuniao = document.getElementById("txt_Reuniao");
+
+    if (!selectReuniao) {
+        console.error("Elemento select com id 'txt_Reuniao' não encontrado.");
+        return;
+    }
+
+    selectReuniao.innerHTML = "";
+
+    console.clear();
+    console.log("Listando todas as reuniões futuras:");
+
+    for (var i = 0; i < tamanho; i++) {
+        var dataInicio = Reunioes[i].dt_dataInicio;
+
+        if (dataInicio) {
+            var dataInicioNumber = converterData(dataInicio);
+
+            if (dataInicioNumber > dataReuniao) {
+                var dataFormatada = formatarData(dataInicio);
+
+                var option = document.createElement("option");
+                option.value = dataInicio;
+                option.textContent = dataFormatada;
+                selectReuniao.appendChild(option);
+
+                console.log("Adicionada Data: " + dataFormatada);
+            }
+        } else {
+            console.error("Registro ignorado: Não possui datas válidas para Reunião.");
+        }
+    }
+}
+
+listarDatasFuturas();

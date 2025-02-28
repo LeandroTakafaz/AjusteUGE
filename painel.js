@@ -33,7 +33,6 @@ function colors(){
     var S2 = document.querySelectorAll(".fluig-style-guide .panel-info>.panel-heading")
     var S3 = document.querySelectorAll(".fluig-style-guide .btn-info ")
 
-    //.fluig-style-guide .panel-info>.panel-heading
 
     for(var i=0; i<S1.length; i++){
         S1[i].style.cssText = Sborder

@@ -16,8 +16,8 @@
 	<div class="fluig-style-guide">
 		<form name="form" role="form">
 
-
 			<input type="hidden" name="hdn_numSuperior" id="hdn_numSuperior">
+			<input type="hidden" name="hdn_dir_vinc" id="hdn_dir_vinc">
 			<input type="hidden" name="codProjeto" id="codProjeto">
 			<input type="hidden" name="codAcao" id="codAcao">
 			<input type="hidden" name="codRecurso" id="codRecurso">
@@ -29,7 +29,7 @@
 					<div class="panel-heading">
 						<div align="center" class="panel-title">
 							<h1><i class="fluigicon fluigicon-desktop icon-md" aria-hidden="true"></i> Solicitação
-								Ajuste - UGE</h1>
+								de Serviços - UGE</h1>
 						</div>
 					</div>
 				</div>
@@ -60,9 +60,14 @@
 							id="cmb_GerenteSolicitante" readonly>
 						</div>
 
-						<div class="col-md-2" id="DiretoriaSolicita">
-							<label for="hdn_diretoria">Diretoria</label>
-							<input type="text" class="form-control" name="hdn_diretoria" id="hdn_diretoria" readonly>
+						<div class="col-md-2">
+							<label for="MatDiretoria">Nome Diretora</label>
+							<input type="text" class="form-control" name="MatDiretoria" id="MatDiretoria" readonly>
+						</div>
+
+						<div class="col-md-2">
+							<label for="MatDiretoria_Unid">Diretoria</label>
+							<input type="text" class="form-control" name="MatDiretoria_Unid" id="MatDiretoria_Unid" readonly>
 						</div>
 
 					</div>
@@ -80,13 +85,17 @@
 
 						<div class="col-md-3" id="UnidadeSolicita">
 							<label for="zm_UnidadeSolicitante">Unidade Solicitante</label>
-							<input type="text" class="form-control" name="cmb_UnidadeSolicitante"
-								id="cmb_UnidadeSolicitante" readonly>
+							<input type="text" class="form-control" name="zm_UnidadeSolicitante"
+								id="zm_UnidadeSolicitante" readonly>
 						</div>
 
+						<div class="col-md-2" style="display: none;">
+							<label for="campoInner">JustificativaInner</label>
+							<textarea class="form-control" name="campoInner" id="campoInner" readonly></textarea>
+						</div>
 					</div>
 				</div>
-			</div>
+			</div> 
 
 			<!-- Fim do Painel -->
 
@@ -103,7 +112,7 @@
 						<div class="col-md-3" id="TipoSolicitacao">
 							<label for="TipoServico">Tipo de Solicitação</label>
 							<select class="form-control" name="TipoServico" id="TipoServico">
-								<option value="">Selecione uma Opção</option>
+								<option value="" selected>Selecione uma Opção</option>
 								<option value="1">Ajuste Orçamentario</option>
 								<option value="2">Integração de Dados</option>
 							</select>
@@ -111,8 +120,8 @@
 
 						<div class="col-md-3" id="ObjetivoLabel">
 							<label for="Objetivo">Objetivo</label>
-							<select class="form-control  " name="Objetivo" id="Objetivo">
-								<option value="">Selecione uma Opção</option>
+							<select class="form-control" name="Objetivo" id="Objetivo">
+								<option value="" selected>Selecione uma Opção</option>
 								<option value="Acresc">Acrescentar Recurso</option>
 								<option value="Dimin">Diminuir Recurso</option>
 							</select>
@@ -129,6 +138,21 @@
 								<option value="Evento">Evento</option>
 							</select>
 						</div>
+
+							<div class="col-md-2">
+								<label for="txt_Reuniao">Data da Reunião DIREX</label>
+								<!--<input type="text" class="form-control" name="cmb_GerenteSolicitante" id="cmb_GerenteSolicitante">
+								-->
+								<select 
+									name=			"txt_Reuniao" 
+									id=				"txt_Reuniao" 
+									dataset=		"Cadastro de Reunião DIREX"
+									datasetkey=		"dt_dataInicio" 
+									datasetvalue=	"dt_dataInicio"
+									class=			"form-control"
+									>
+								</select>
+							</div>
 
 					</div>
 				</div>
@@ -199,6 +223,7 @@
 																<label for="fonteRec">Origem do Recurso:</label>
 																<select class="form-control" name="fonteRec"
 																	id="fonteRec">
+																	<option value="">Selecione uma Opção</option>
 																	<option value="Reserva">Fundo de Reserva</option>
 																	<option value="Convenio">REB/Convênio</option>
 																	<option value="CSO">Contribuição Social
@@ -326,6 +351,8 @@
 
 			<!-- Fim do Painel -->
 
+
+			
 			<!-- Painel da Dotação Orçamentária -->
 
 
@@ -536,5 +563,24 @@
 </body>
 
 <script src="custom.js"></script>
+
+<script>
+	function atualizarCampo() {
+		let justificativa = document.getElementById("Detalhes___1").value;
+		let projeto = document.getElementById("slc_projetoT_1").value;
+		let acao = document.getElementById("slc_acaoT_1").value;
+		let unidade = document.getElementById("slc_unidadeT_1").value;
+
+		let textoFormatado = 
+			`<p>Justificativa: ${justificativa}</p><br>` +
+			`<p>Projeto: ${projeto}</p><br>` +
+			`<p>Ação: ${acao}</p><br>` +
+			`<p>Unidade: ${unidade}</p>`;
+
+		document.getElementById("campoInner").value = textoFormatado;
+	}
+
+	setInterval(atualizarCampo, 1000);
+</script>
 
 </html>
